@@ -1,9 +1,11 @@
 # vuejs-code
 学习《Vue.js 权威指南》过程中，写的DEMO, 对应书中章节。<br/>
 emmmm.....天赋不够，就用努力来凑吧。。<br/>
-https://img.shields.io/badge/vue-2.5.16-green.svg 
-https://img.shields.io/badge/vsCode-1.21.1-red.svg
-https://img.shields.io/badge/windows-10-blue.svg
+
+![Travis branch](https://img.shields.io/badge/vue-2.5.16-green.svg)
+![Travis branch](https://img.shields.io/badge/vsCode-1.21.1-red.svg)
+![Travis branch](https://img.shields.io/badge/windows-10-blue.svg)
+
 <br/>
 # 环境
 系统：windows 10<br/><br/>
