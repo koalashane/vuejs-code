@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <title>v-else</title>
+    <title>v-text</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="native">
     <div id="example">
-        <p v-if="ok">我是对的</p>
-        <p v-else="ok">我是错的</p>
+        <p v-text="msg"></p>
+        <p>{{msg}}</p>
     </div>
 </body>
 
@@ -19,7 +19,8 @@
     var examleVM2 = new Vue({
         el: '#example',
         data: {
-            ok: false
+            msg: 'hello world'
+
         }
     })
 </script>

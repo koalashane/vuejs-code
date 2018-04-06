@@ -5,21 +5,35 @@
     <meta charset="utf-8">
     <title>v-for</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <style>
-        ul,
-        li {
-            list-style: none
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="native">
-    <ul id="app">
-        <li v-for="(value,key,index) in items">
-            {{index}} {{key}} {{value}}
-        </li>
+    <div id="app">
+        <ul>
+            <li v-for="(value,key,index) in items">
+                {{index}} {{key}} {{value}}
+            </li>
+        </ul>
+        <h3>v-for遍历一个对象</h3>
+        <ul>
+            <li v-for="value in primitiveValues">{{value}}</li>
+            <li>=====</li>
+            <li v-for="(value, key) in objectValues">{{key}} {{value.msg}}</li>
+        </ul>
 
-    </ul>
+        <h3>v-for支持整数</h3>
+        <ul>
+            <li v-for="n in 10">{{n}}</li>
+        </ul>
+        <h3>filterBy</h3>
+        <div>
+            <ul>
+                <li v-for="user in items ">{{user.name |capitalize}}</li>
+            </ul>
+
+        </div>
+    </div>
 
 </body>
 <script>
@@ -34,8 +48,43 @@
                 name: 'Safari '
             }, {
                 name: 'Internet Explorer 11 '
-            }]
+            }],
+            primitiveValues: {
+                FirstName: 'DIDI',
+                LastName: 'FE',
+                Age: 4
+            },
+            objectValues: {
+                one: {
+                    msg: 'Hello'
+                },
+                two: {
+                    msg: 'DIDI FE'
+                }
+            },
+            users: [{
+                name: 'fireFox',
+                tag: '4'
+            }, {
+                name: 'google',
+                tag: '3'
+            }, {
+                name: 'safari ',
+                tag: '2'
+            }, {
+                name: 'internet Explorer 11 ',
+                tag: '1'
+            }],
+            field: 'tag',
+            reverse: false
 
+        },
+        filters: {
+            capitalize: function(value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.toUpperCase()
+            }
         }
     })
 </script>
