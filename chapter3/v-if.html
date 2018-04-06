@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>v-if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body class="native">
+    <div id="example">
+        <p v-if="greeting"> Hello </p>
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+    </div>
+</body>
+
+<script>
+    var examleVM2 = new Vue({
+        el: '#example',
+        data: {
+            greeting: false,
+            ok: true
+        }
+    })
+</script>
+
+</html>

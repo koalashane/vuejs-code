@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>v-for</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        ul,
+        li {
+            list-style: none
+        }
+    </style>
+</head>
+
+<body class="native">
+    <ul id="app">
+        <li v-for="(value,key,index) in items">
+            {{index}} {{key}} {{value}}
+        </li>
+
+    </ul>
+
+</body>
+<script>
+    var demo = new Vue({
+        el: '#app',
+        data: {
+            items: [{
+                name: 'FireFox'
+            }, {
+                name: 'Google'
+            }, {
+                name: 'Safari '
+            }]
+
+        }
+    })
+</script>
+
+</html>
