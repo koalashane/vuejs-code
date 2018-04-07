@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>自定义指令 对象字面量</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="example">
+        <div id="demo" v-demo="{color:'white',text:'Hello'}"></div>
+    </div>
+</body>
+
+<script>
+    Vue.directive('demo', function(el, binding) {
+        console.log(binding.value.color);
+        console.log(binding.value.text)
+    });
+    var demo = new Vue({
+        el: '#example',
+        data: {}
+
+    })
+</script>
+
+</html>
