@@ -6,20 +6,12 @@
     <title>自定义指令</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css">
-    <style>
-        [v-cloak] {
-            display: none;
-        }
-    </style>
+
 </head>
 
 <body class="native">
     <div id="example">
-        <h2>v-pre 跳过这个元素和它的子元素的编译过程,用来显示原始 Mustache 标签。</h2>
-
-        <h2>v-cloak 实例准备完毕，显示编译后的数据</h2>
-        <p style="color:red">比如，因为网络问题，接口数据等问题，页面直接显示<span v-pre> {{msg}} </span>, 用户体验很不友好</p>
-        <p v-cloak>{{msg}}</p>
+        <input type="text" v-focus>
     </div>
 </body>
 
@@ -27,7 +19,14 @@
     var examleVM2 = new Vue({
         el: '#example',
         data: {
-            msg: 'hello world'
+
+        },
+        directive: {
+            focus: {
+                inserted: function(el) {
+                    el.focus()
+                }
+            }
         }
     })
 </script>
