@@ -9,23 +9,55 @@
 
 </head>
 
-<body class="native">
-    <div id="example">
-        <input type="text" v-focus>
+<body>
+    <div id="example" @click="up">
+        <div id="demo" v-demo:hello.a.b="msg"></div>
+        <h3> 指令参数和指令配置 vue 2.0中移除</h3>
+        <ul>
+            <li>1、elementDirective</li>
+            <li>2、deep</li>
+            <li>3、twoWay </li>
+            <li>4、acceptStatement</li>
+            <li>5、terminal</li>
+            <li>6、priority</li>
+        </ul>
     </div>
 </body>
 
 <script>
-    var examleVM2 = new Vue({
+    Vue.directive('demo', {
+        //只调用一次，指令第一次绑定到元素时调用
+        bind: function(el, binding, vnode) {
+            el.innerHTML =
+                'name -' + binding.name + '<br>' +
+                'value -  ' + binding.value + '<br>' +
+                'expression -' + binding.expression + '<br>' +
+                'argument - ' + binding.arg + '<br>' +
+                'modifiers -' + JSON.stringify(binding.modifiers) + '<br>' +
+                'vnode keys: ' + Object.keys(vnode).join(', ')
+        },
+        //被绑定元素插入父节点时调用
+        inserted: function(el, binding, vnode) {
+            el.style.color = 'green'
+        },
+        update: function(el, binding, vnode, oldVnode) {
+            //所在组件的 VNode 更新时调用
+            //oldVnode仅在 update 和 componentUpdated 钩子中可用。
+        },
+        componentUpdated: function(el, binding, vnode, oldVnode) {
+            //指令所在组件的 VNode 及其子 VNode 全部更新后调用。
+            //oldVnode仅在 update 和 componentUpdated 钩子中可用。
+        }
+
+    });
+    var demo = new Vue({
         el: '#example',
         data: {
-
+            msg: 'hello!'
         },
-        directive: {
-            focus: {
-                inserted: function(el) {
-                    el.focus()
-                }
+        methods: {
+            up: function() {
+                console.log('click')
             }
         }
     })
