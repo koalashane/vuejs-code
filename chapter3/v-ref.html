@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>v-ref</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="native">
+    <h2>v-ref、v-el 弃用 统一使用ref属性为元素或组件添加标记,然后通过this.$refs获取</h2>
+    <h5>如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例</h5>
+    <h5>vue2 DEMO:</h5>
+    <div id="example">
+        <user-profile ref="profile"></user-profile>
+        <p ref="p">hello</p>
+    </div>
+</body>
+
+<script>
+    Vue.component('user-profile', {
+        data() {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+    var examleVM2 = new Vue({
+        el: '#example',
+        data: {},
+        mounted: function() {
+            //引用指向的DOM元素
+            console.log(this.$refs.p);
+
+        }
+    })
+
+    // 访问子组件实例  $refs引用指向组件实例
+    var child = examleVM2.$refs.profile
+    console.log(child);
+</script>
+
+</html>
