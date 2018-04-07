@@ -6,8 +6,9 @@ emmmm.....天赋不够，就用努力来凑吧。。<br/>
 ![Travis branch](https://img.shields.io/badge/vsCode-1.21.1-red.svg)
 ![Travis branch](https://img.shields.io/badge/windows-10-blue.svg)
 
+![vue](https://github.com/koalashane/vuejs-code/raw/master/images/vue.jpg)
 <br/>
- ![image](https://github.com/koalashane/vuejs-code/raw/master/Screenshots/vue.jpg)
+
  <br/>
  <br/>
 # 环境
