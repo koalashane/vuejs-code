@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>计算属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        
+        .mt5 {
+            margin-top: 50px
+        }
+    </style>
+</head>
+
+<body>
+    <h2>计算属性</h2>
+    <h3>计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。</h3>
+    <div id="example">
+        <input type="text" v-model="didi">
+        <input type="text" v-model="family">
+        <br>
+        <p>
+            didi = {{didi}},family = {{family}},didiFamily = {{didiFamily}}
+        </p>
+
+        <div class="mt5">
+            <h2>计算属性getter不执行的情景</h2>
+            <h3>当包含计算属性的节点被移除，并且模板中没有其他地方引用时，对应的getter方法不会执行</h3>
+            <button @click='toggleShow'>Toggle show total Price</button>
+            <!-- 一直出现在模板中， 不会条件性隐藏 -->
+            <p v-cloak>{{totalPrice}}</p>
+            <p v-if="showToal">Total Price = <span v-cloak>{{totalPrice}}</span></p>
+
+        </div>
+        <div class="mt5">
+            <del>v-repeat 已经废除 </del>
+        </div>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            didi: 'didi',
+            family: 'family',
+            showToal: true,
+            basePrice: 100
+        },
+        computed: {
+            didiFamily: {
+                // 一个计算属性的getter
+                get: function() {
+                    // 'this' 指向 vm 实例
+                    return this.didi + this.family
+                },
+                // 一个计算属性的setter
+                set: function(newVal) {
+                    var names = newVal.split('')
+                    this.didi = name[0]
+                    this.family = names[1]
+                }
+            },
+            totalPrice: function() {
+                return this.basePrice + 1
+            },
+            fulltext: function() {
+                return 'item' + this.text
+            }
+
+        },
+        methods: {
+            toggleShow: function() {
+                this.showToal = !this.showToal
+            }
+        }
+
+    })
+</script>
+
+</html>
