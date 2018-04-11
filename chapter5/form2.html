@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>表单控件绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="example">
+        <h2>值绑定及 v-model修饰指令</h2>
+
+        <div class="checkbox">
+            <h4>1、checkbox</h4>
+            <form>
+                <input type="checkbox" id="flash" :value="flash" v-model="bizLines">
+                <label for="flash">{{flash.name}}</label>
+                <input type="checkbox" id="premium" :value="premium" v-model="bizLines">
+                <label for="premium">{{premium.name}}</label>
+                <input type="checkbox" id="bus" :value="bus" v-model="bizLines">
+                <label for="bus">{{bus.name}}</label>
+            </form>
+            <p>选中的数据是: <span v-cloak>{{ bizLines | json}}</span></span>
+            </p>
+        </div>
+
+        <div class="radio margin-top-4">
+            <h4>2、radio</h4>
+            <input id="r" type="radio" :value="a" v-model="pick">
+            <label for="r">{{ a.value }}</label>
+            <p>选中的数据是: <span v-cloak>{{ pick }}</span></p>
+        </div>
+
+        <div class="selsect margin-top-4">
+            <h4>3、selsect</h4>
+            <select v-model="selected">
+                <option :value="{number:123}">123</option>
+            </select>
+            <p>选中的数据是: <span v-cloak>{{ selected }}</span></p>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            flash: {
+                name: '快车'
+            },
+            premium: {
+                name: '专车'
+            },
+            bus: {
+                name: '巴士'
+            },
+            bizLines: [],
+            pick: '',
+            a: {
+                value: 'radio'
+            },
+            selected: []
+
+        }
+
+
+    })
+</script>
+
+</html>
