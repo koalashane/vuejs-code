@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>表单控件绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="example">
+        <h2>表单的基本用法</h2>
+        <h4>1、text</h4>
+        <p> Welcom {{name}} join DDEE</p>
+        <input type="text" v-model="name" placeholder="join DDEE">
+
+        <div class="checkbox">
+            <h4>2、checkbox</h4>
+            <form>
+                <input type="checkbox" id="flash" value="flash" v-model="bizLines">
+                <label for="flash">快车</label>
+                <input type="checkbox" id="premium" value="premium" v-model="bizLines">
+                <label for="premium">专车</label>
+                <input type="checkbox" id="bus" value="bus" v-model="bizLines">
+                <label for="bus">巴士</label>
+            </form>
+            <p>选中的数据是: <span v-cloak>{{ bizLines | json}}</span></span>
+            </p>
+        </div>
+
+        <div class="radio margin-top-4">
+            <h4>3、radio</h4>
+            <form>
+                <input type="radio" id="flash" value="flash" v-model="radiomodel">
+                <label for="flash">快车</label>
+                <input type="radio" id="premium" value="premium" v-model="radiomodel">
+                <label for="premium">专车</label>
+                <input type="radio" id="bus" value="bus" v-model="radiomodel">
+                <label for="bus">巴士</label>
+            </form>
+            <p>选中的数据是: <span v-cloak>{{ radiomodel }}</span></p>
+        </div>
+
+        <div class="selsect margin-top-4">
+            <h4>4、selsect</h4>
+            <select v-model="selected" multiple>
+                <option value="car" selected>汽车</option>
+                <option value="book">书本</option>
+                <option value="box">盒子</option>
+            </select>
+            <p>选中的数据是: <span v-cloak>{{ selected }}</span></p>
+            <div class=" margin-top-4">
+                <select v-model="selected2">
+                    <option  v-for="item in options" :value="item.value" >{{ item.text }}</option>
+                </select>
+                <p>选中的数据是: <span v-cloak>{{ selected2 }}</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            name: 'koalashane',
+            bizLines: [],
+            radiomodel: '',
+            selected: [],
+            selected2: "",
+            options: [{
+                text: '红色',
+                value: 'red'
+            }, {
+                text: '黑色',
+                value: 'black'
+            }, {
+                text: '蓝色',
+                value: 'blue'
+            }]
+        }
+
+
+    })
+</script>
+
+</html>
