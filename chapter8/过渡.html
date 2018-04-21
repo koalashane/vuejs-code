@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>过渡</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="example-1">
+        <button @click="show = !show">CSS过渡</button>
+        <transition name="slide-fade">
+            <p v-if="show">hello</p>
+        </transition>
+        <div class="margin-top-2">
+            <button @click="show1 = !show1">CSS动画</button>
+            <transition name="bounce">
+                <p v-if="show1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+            </transition>
+        </div>
+        <div class="margin-top-2">
+            <button @click="look = !look">
+                自定义过渡
+            </button>
+            <transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+                <p v-if="look">hello</p>
+            </transition>
+        </div>
+        <div class="margin-top-2">
+            <button @click="open = !open">Javascript过渡</button>
+            <transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" v-bind:css="false">
+                <p v-if="open">
+                    Demo
+                </p>
+            </transition>
+        </div>
+        <div class="margin-top-2">
+            <p>滑动过渡</p>
+            <div class='wrap'>
+                <transition name='no-mode-fade'>
+                    <button v-if='on' key='on' @click='on=false'>on</button>
+                    <button v-else='' key='off' @click='on=true'>off</button>
+                </transition>
+            </div>
+        </div>
+        <div class="margin-top-2">
+            <p>多组件过渡</p>
+            <input type="radio" value="v-a" id="a" name="view" @click="change('v-a')" checked>
+            <label for="a">A</label>
+            <input type="radio" value="v-b" id="b" name="view" @click="change('v-b')">
+            <label for="b">B</label>
+            <transition name="component-fade" mode="out-in">
+                <component v-bind:is="view"></component>
+            </transition>
+        </div>
+        <div class="margin-top-2">
+            <button @click="shuffle">多维网格过渡</button>
+            <transition-group name="cell" tag="div" class="container">
+                <div v-for="cell in cells" :key="cell.id" class="cell">
+                    {{ cell.number }}
+                </div>
+            </transition-group>
+        </div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#example-1',
+        data: {
+            show: true,
+            show1: true,
+            look: true,
+            open: false,
+            on: false,
+            view: 'v-a',
+            cells: Array.apply(null, {
+                    length: 81
+                })
+                .map(function(_, index) {
+                    return {
+                        id: index,
+                        number: index % 9 + 1
+                    }
+                })
+
+        },
+        components: {
+            'v-a': {
+                template: '<div>Component A</div>'
+            },
+            'v-b': {
+                template: '<div>Component B</div>'
+            }
+        },
+        methods: {
+            change(val) {
+
+                this.view = val
+            },
+            beforeEnter: function(el) {
+                el.style.opacity = 0
+                el.style.transformOrigin = 'left'
+            },
+            enter: function(el, done) {
+                Velocity(el, {
+                    opacity: 1,
+                    fontSize: '1.4em'
+                }, {
+                    duration: 300
+                })
+                Velocity(el, {
+                    fontSize: '1em'
+                }, {
+                    complete: done
+                })
+            },
+            leave: function(el, done) {
+                Velocity(el, {
+                    translateX: '15px',
+                    rotateZ: '50deg'
+                }, {
+                    duration: 600
+                })
+                Velocity(el, {
+                    rotateZ: '100deg'
+                }, {
+                    loop: 2
+                })
+                Velocity(el, {
+                    rotateZ: '45deg',
+                    translateY: '30px',
+                    translateX: '30px',
+                    opacity: 0
+                }, {
+                    complete: done
+                })
+            },
+            shuffle: function() {
+                this.cells = _.shuffle(this.cells)
+            }
+        }
+
+    })
+</script>
+
+</html>

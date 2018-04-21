@@ -1,0 +1,165 @@
+body {
+    font-family: "PT Mono", "Source Sans Pro", "Microsoft YaHei", Arial, sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #34495e;
+    background-color: #fff;
+    margin: 0;
+    padding: 50px
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: 24px
+}
+
+.margin-top-2 {
+    margin-top: 20px;
+}
+
+.margin-top-4 {
+    margin-top: 40px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+code {
+    border-radius: .2rem;
+    padding: 2px 4px;
+    font-size: 85%;
+    color: #d44950;
+    background-color: #f7f7f9;
+}
+
+code {
+    font-family: "PT Mono", Menlo, "Courier New", monospace;
+    font-size: 95%;
+}
+
+
+/* 可以设置不同的进入和离开动画 */
+
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */
+
+{
+    transform: translateX(10px);
+    opacity: 0;
+}
+
+
+/* 自定义过渡 */
+
+.bounce-enter-active {
+    animation: bounce-in .5s;
+}
+
+.bounce-leave-active {
+    animation: bounce-in .5s reverse;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* 滑动过渡 */
+
+.wrap {
+    position: relative;
+    height: 18px;
+}
+
+.wrap button {
+    position: absolute;
+}
+
+.no-mode-fade-enter-active,
+.no-mode-fade-leave-active {
+    transition: all 1s
+}
+
+.no-mode-fade-enter,
+.no-mode-fade-leave-active {
+    opacity: 0;
+}
+
+.no-mode-fade-enter {
+    transform: translateX(31px);
+}
+
+.no-mode-fade-leave-active {
+    transform: translateX(-31px);
+}
+
+
+/* 多组件过渡 */
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: opacity .3s ease;
+}
+
+.component-fade-enter,
+.component-fade-leave-to
+/* .component-fade-leave-active for below version 2.1.8 */
+
+{
+    opacity: 0;
+}
+
+
+/* 多维网格过渡 */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 238px;
+    margin-top: 10px;
+}
+
+.cell {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #aaa;
+    margin-right: -1px;
+    margin-bottom: -1px;
+}
+
+.cell:nth-child(3n) {
+    margin-right: 0;
+}
+
+.cell:nth-child(27n) {
+    margin-bottom: 0;
+}
+
+.cell-move {
+    transition: transform 1s;
+}
