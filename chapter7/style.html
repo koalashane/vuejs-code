@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Class 与 Style 绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="example">
+        <div class="box">
+            <h4>对象语法</h4>
+            <p class="static" v-bind:class="{'didi-orange':isRipe, 'didi-green':isNotRipe}"> Hello Vue.js</p>
+            <p v-bind:class="ddfe">直接绑定数据中的一个对象</p>
+            <p v-bind:class="ddfc">绑定一个返回对象的计算属性</p>
+            <p v-bind:style="{color: didiColor, fontSize: fontSize + 'px'}">绑定内联样式，CSS属性名可以用驼峰式</p>
+            <h4>数组语法</h4>
+            <p v-bind:class="[didiHandsome, didiBeautiful]">用数组语法绑定</p>
+            <div v-bind:class="[isActive ? activeClass : '', errorClass ]">
+                用三元表达式绑定
+                <pre>v-bind:class="[isActive ? activeClass : '', errorClass ]"</pre>
+            </div>
+            <div v-bind:class="[didiHandsome , {active : isActive, didiGreen : isNotRipe}]" class="margin-top-2">
+                在数组语法中使用对象语法
+                <pre>v-bind:class="[didiHandsome , {active : isActive, didiGreen : isNotRipe}]"</pre>
+            </div>
+        </div>
+
+        <div class="box">
+            <h4>自动添加前缀</h4>
+            <p>当 <code>v-bind:style</code> 使用需要添加浏览器引擎前缀的 CSS 属性时，如<code>transform</code>，Vue.js 会自动侦测并添加相应的前缀。</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            isRipe: true,
+            isNotRipe: false,
+            didiAge: 4,
+            isActive: true,
+            didiMember: 6000,
+            ddfe: {
+                'didi-orange': false,
+                'didi-green': true
+            },
+            didiHandsome: 'didi-handsome',
+            didiBeautiful: 'didi-beautiful',
+            activeClass: 'active',
+            errorClass: 'text-danger',
+            didiColor: 'red',
+            fontSize: 30
+        },
+        computed: {
+            ddfc: function() {
+                return {
+                    'didi-orange': this.didiAge > 3 ? true : false,
+                    'didi-blue': this.didiMember > 1000 ? true : false
+
+                }
+            }
+        }
+
+    })
+</script>
+
+</html>
